@@ -1,0 +1,1086 @@
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+        --{ Nightmare "Jackyfranker" }--
+--// (DO NOT DELETE ANY SCRIPTS FROM LINES 6-28) \\--
+
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+ScriptVersion = "8.6"
+
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Jackyfranker/DiscordLib/main/DiscordLib")()
+
+local NL = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jackyfranker/DiscordLib/main/Akali"))()
+local N = NL.Notify
+
+local window = DiscordLib:Window("Da hood : Nightmxre V8.6 | https://discord.gg/kw4T23Mq")
+
+local server = window:Server("Nightmxre (WORKING)", "http://www.roblox.com/asset/?id=6031075938")
+
+local main = server:Channel("Main")
+local combat = server:Channel("Combat")
+local teleport = server:Channel("Teleport")
+local fun = server:Channel("Funs Stuff")
+local autofarm = server:Channel("AutoFarm")
+local autobuy = server:Channel("AutoBuy")
+local money = server:Channel("Money Stuff")
+local credit = server:Channel("Credits")
+
+                --// Anti cheat bypass \\--
+--// (DO NOT DELETE ANY SCRIPTS OR ANTI-CHEAT WILL BAN YOU) \\--
+
+local Detectors = {
+    CHECKER_1 = true,
+    TeleportDetect = true,
+    OneMoreTime = true,
+    BANREMOTE = true,
+    KICKREMOTE = true,
+    PERMAIDBAN = true,
+    BreathingHAMON = true
+}
+
+local mt = getrawmetatable(game)
+local backupnamecall = mt.__namecall
+setreadonly(mt, false)
+
+mt.__namecall = newcclosure(function(...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if (method == "FireServer" and tostring(args[1]) == "MainEvent" and Detectors[args[2]]) then
+        return wait(9e9)
+    end
+    
+    if (method == "CHECKER_1" and tostring(args[1]) == "MainEvent" and Detectors[args[2]]) then
+        return wait(9e9)
+    end
+
+    if (not checkcaller() and getfenv(1).crash ~= nil and getfenv(1).checkChild ~= nil) then
+        getcallingscript():Destroy()
+        return wait(9e9)
+    end
+
+    return backupnamecall(...)
+end)
+
+setreadonly(mt, true)
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Main Pages \\--
+
+FLYSPEED = 20
+main:Button("Fly [X]", function()
+		getgenv().FLYMODE = "Default"
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Jackyfranker/DiscordLib/main/Default%20Fly"))()
+	end
+)
+
+FLYSPEED = 20
+main:Button("SuperHero Fly", function()
+        function Fly()
+            function sandbox(var,func)
+                local env = getfenv(func)
+                local newenv = setmetatable({},{
+                    __index = function(self,k)
+                        if k=="script" then
+                            return var
+                        else
+                            return env[k]
+                        end
+                    end,
+                })
+                setfenv(func,newenv)
+                return func
+            end
+            cors = {}
+            mas = Instance.new("Model",game:GetService("Lighting"))
+            Tool0 = Instance.new("Tool")
+            LocalScript1 = Instance.new("LocalScript")
+            Sound2 = Instance.new("Sound")
+            Sound3 = Instance.new("Sound")
+            Animation4 = Instance.new("Animation")
+            RemoteEvent5 = Instance.new("RemoteEvent")
+            Animation6 = Instance.new("Animation")
+            Tool0.Name = "Fly"
+            Tool0.Parent = mas
+            Tool0.CanBeDropped = false
+            Tool0.RequiresHandle = false
+            LocalScript1.Name = "local"
+            LocalScript1.Parent = Tool0
+            table.insert(cors,sandbox(LocalScript1,function()
+                wait();
+                local l__LocalPlayer__1 = game.Players.LocalPlayer;
+                while true do
+                    wait();
+                    if l__LocalPlayer__1.Character then
+                        break;
+                    end;
+                end;
+                local l__Character__2 = l__LocalPlayer__1.Character;
+                local l__Humanoid__3 = l__Character__2:WaitForChild("Humanoid");
+                local l__Parent__4 = script.Parent;
+                local u1 = false;
+                local u2 = l__Humanoid__3:LoadAnimation(script.Hover);
+                local u3 = nil;
+                local u4 = nil;
+                local u5 = false;
+                local u6 = false;
+                local u7 = l__Humanoid__3:LoadAnimation(script.Fly);
+                l__Parent__4.Equipped:connect(function(p1)
+                    Sound3:Play()
+                    p1.TargetFilter = workspace;
+                    u1 = true;
+                    u2:Play();
+                    u3 = Instance.new("BodyGyro");
+                    u3.Name = "NA";
+                    u3.Parent = l__Character__2.HumanoidRootPart;
+                    u3.MaxTorque = Vector3.new(30000, 0, 30000);
+                    u3.P = u3.P * 5;
+                    u3.CFrame = CFrame.new(0, 0, 0);
+                    u4 = Instance.new("BodyPosition");
+                    u4.Name = "NA";
+                    u4.Parent = l__Character__2.HumanoidRootPart;
+                    u4.MaxForce = Vector3.new(60000, 60000, 60000);
+                    u4.Position = l__Character__2.HumanoidRootPart.Position;
+                    p1.Button1Down:connect(function()
+                        Sound2:Play()
+                        if u5 then
+                            return;
+                        end;
+                        u5 = true;
+                        u6 = true;
+                        u7:Play();
+                        local v5 = Instance.new("BodyVelocity", l__Character__2.HumanoidRootPart);
+                        v5.MaxForce = Vector3.new(50000, 50000, 50000);
+                        v5.Velocity = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p).lookVector * 85;
+                        u3.MaxTorque = Vector3.new(30000, 30000, 30000);
+                        u3.CFrame = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p);
+                        u4.Parent = nil;
+                        l__Humanoid__3.AutoRotate = false;
+                        if u2.IsPlaying then
+                            u2:Stop();
+                        end;
+                        while u6 do
+                            v5.Velocity = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p).lookVector * 85;
+                            u3.CFrame = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p);
+                            game:GetService("RunService").Heartbeat:wait();		
+                        end;
+                        l__Humanoid__3.AutoRotate = true;
+                        v5:Destroy();
+                        if u4 ~= nil then
+                            u4.Position = l__Character__2.HumanoidRootPart.Position;
+                            u4.Parent = l__Character__2.HumanoidRootPart;
+                        end;
+                        if u3 ~= nil then
+                            u3.MaxTorque = Vector3.new(30000, 0, 30000);
+                            u3.CFrame = CFrame.new(0, 0, 0);
+                        end;
+                        u6 = false;
+                        if u1 then
+                            u2:Play();
+                        end;
+                        u7:Stop();
+                        wait(0.3);
+                        u5 = false;
+                    end);
+                    p1.Button1Up:connect(function()
+                        Sound2:Stop()
+                        Sound3:Play()
+                        u6 = false;
+                    end);
+                end);
+                l__Parent__4.Unequipped:connect(function()
+                    Sound2:Stop()
+                    Sound3:Play()
+                    u1 = false;
+                    u6 = false;
+                    u3:Destroy();
+                    u3 = nil;
+                    u4:Destroy();
+                    u4 = nil;
+                    if u2.IsPlaying then
+                        u2:Stop();
+                    end;
+                end);
+            end))
+            Sound2.Name = "Flapping"
+            Sound2.Parent = LocalScript1
+            Sound2.Looped = true
+            Sound2.MaxDistance = 100
+            Sound2.Pitch = 1.5
+            Sound2.PlaybackSpeed = 1.5
+            Sound2.SoundId = "rbxassetid://1462718291"
+            Sound3.Name = "Activation"
+            Sound3.Parent = LocalScript1
+            Sound3.MaxDistance = 100
+            Sound3.SoundId = "rbxassetid://2952274135"
+            Sound3.Volume = 0.69999998807907
+            Animation4.Name = "Hover"
+            Animation4.Parent = LocalScript1
+            Animation4.AnimationId = "rbxassetid://3541114300"
+            RemoteEvent5.Name = "re"
+            RemoteEvent5.Parent = LocalScript1
+            Animation6.Name = "Fly"
+            Animation6.Parent = LocalScript1
+            Animation6.AnimationId = "rbxassetid://3541044388"
+            for i,v in pairs(mas:GetChildren()) do
+                v.Parent = game.Players.LocalPlayer.Backpack
+                pcall(function() v:MakeJoints() end)
+            end
+            mas:Destroy()
+            for i,v in pairs(cors) do
+                spawn(function()
+                    pcall(v)
+                end)
+            end
+        end
+        game.Players.LocalPlayer.Character:WaitForChild("FULLY_LOADED_CHAR")
+        Fly()
+    end
+)
+
+main:Slider("Fly Speed", 10, 100, 20, function(v)
+		FLYSPEED = v
+	end
+)
+
+
+main:Button("No-clip", function()
+DiscordLib:Notification("Oops!", "There's no scripts in this button", "Okay!")
+end)
+
+main:Button("Superhuman [Z]", function()
+        superhuman = false
+		plr = game.Players.LocalPlayer
+		mouse = plr:GetMouse()
+		mouse.KeyDown:connect(function(key)
+			if key == "z" and superhuman == false then
+				superhuman = true
+				game.Players.LocalPlayer.Character.Humanoid.Name = "Humz"
+				game.Players.LocalPlayer.Character.Humz.JumpPower = 200
+				game.Players.LocalPlayer.Character.Humz.WalkSpeed = 100
+			elseif key == "z" and superhuman == true then
+				superhuman = false
+				game.Players.LocalPlayer.Character.Humz.JumpPower = 50
+				game.Players.LocalPlayer.Character.Humz.WalkSpeed = 16
+				game.Players.LocalPlayer.Character.Humz.Name = "Humanoid"
+			end
+		end)
+	end
+)
+
+main:Seperator()
+
+main:Slider("FOV", 30, 120, 60, function(v)
+		game.Workspace.Camera.FieldOfView = v 
+	end
+)
+main:Button("Force Reset", function()
+        for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v:IsA("BasePart") then
+                v:Destroy()
+            end
+		end
+    end
+)
+
+
+main:Button("Q to TP", function()
+        plr = game.Players.LocalPlayer
+ 
+        hum = plr.Character.HumanoidRootPart
+         
+        mouse = plr:GetMouse()
+         
+         
+         
+        mouse.KeyDown:connect(function(key)
+         
+        if key == "q" then
+         
+        if mouse.Target then
+         
+        hum.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)
+         
+        end
+         
+        end
+        end)
+        end
+)
+
+main:Button("Inf-Stamina", function()
+		local a=game:GetService"Players"local b=a.LocalPlayer;function InfiniteStamina()local c=b.Character:WaitForChild"BodyEffects"local d,e,f=c:WaitForChild"Defense",c:WaitForChild"Movement",c:WaitForChild"Reload"while wait()do f.Value=false;d.Value=9e9;for g,h in next,e:GetChildren()do if h then h:Destroy()end end end end;InfiniteStamina()
+    end
+)
+
+main:Toggle("Anti-Slow", false, function(as)
+        if as == true then
+			NL.Notify({
+				Title = "Anti-Slow",
+				Description = "True",
+				Duration = 1
+			})
+			game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
+				if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
+				if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
+				if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
+				if game.Players.LocalPlayer.Character.BodyEffects.Reload.Value == true then game.Players.LocalPlayer.Character.BodyEffects.Reload.Value = false end
+			end)
+	    elseif as == false then
+			NL.Notify({
+				Title = "Anti-Slow",
+				Description = "False",
+				Duration = 1
+			})
+            game:GetService('RunService'):UnbindFromRenderStep("Anti-Slow")
+        end
+    end
+)
+
+main:Seperator()
+
+main:Label("Game Stuff #1")
+
+main:Button("Infinite Zoom", function()
+    game.Players.LocalPlayer.CameraMaxZoomDistance = 1000
+end
+)
+
+
+main:Button("No-Fog", function()
+    game.Lighting.FogEnd = 9e9
+end
+)
+
+main:Button("No Display Names", function()
+    pcall(function()
+        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v.Character then
+                if v.Character:FindFirstChild("Humanoid") then
+                    v.Character:FindFirstChild("Humanoid").DisplayName = v.Name 
+                end
+            end
+        end
+    end)
+end
+)
+
+main:Seperator()
+
+main:Label("Game Stuff #2")
+
+main:Button("Rejoin", function()
+        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+	end
+)
+
+main:Button("Chat Logs", function()
+        local LP = game.Players.LocalPlayer
+		LP.PlayerGui.Chat.Frame.ChatChannelParentFrame.Visible = true
+		LP.PlayerGui.Chat.Frame.ChatBarParentFrame.Position = LP.PlayerGui.Chat.Frame.ChatChannelParentFrame.Position + UDim2.new(UDim.new(),LP.PlayerGui.Chat.Frame.ChatChannelParentFrame.Size.Y)
+	end
+)
+
+main:Button("Server-Hop", function()
+		local x = {}
+		for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+			   if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+				   x[#x + 1] = v.id
+			  end
+		end
+		if #x > 0 then
+			   game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+		end
+	end
+)
+
+main:Button("Low-GFX", function()
+    local ToDisable = {
+        Textures = true,
+        VisualEffects = true,
+        Parts = true,
+        Particles = true,
+        Sky = true
+    }
+    
+    local ToEnable = {
+        FullBright = false
+    }
+    
+    local Stuff = {}
+    
+    for _, v in next, game:GetDescendants() do
+        if ToDisable.Parts then
+            if v:IsA("Part") or v:IsA("Union") or v:IsA("BasePart") then
+                v.Material = Enum.Material.SmoothPlastic
+                table.insert(Stuff, 1, v)
+            end
+        end
+        
+        if ToDisable.Particles then
+            if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Explosion") or v:IsA("Sparkles") or v:IsA("Fire") then
+                v.Enabled = false
+                table.insert(Stuff, 1, v)
+            end
+        end
+        
+        if ToDisable.VisualEffects then
+            if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRaysEffect") then
+                v.Enabled = false
+                table.insert(Stuff, 1, v)
+            end
+        end
+        
+        if ToDisable.Textures then
+            if v:IsA("Decal") or v:IsA("Texture") then
+                v.Texture = ""
+                table.insert(Stuff, 1, v)
+            end
+        end
+        
+        if ToDisable.Sky then
+            if v:IsA("Sky") then
+                v.Parent = nil
+                table.insert(Stuff, 1, v)
+            end
+        end
+    end
+    
+    game:GetService("TestService"):Message("Effects Disabler Script : Successfully disabled "..#Stuff.." assets / effects. Settings :")
+    
+    for i, v in next, ToDisable do
+        print(tostring(i)..": "..tostring(v))
+    end
+    
+    if ToEnable.FullBright then
+        local Lighting = game:GetService("Lighting")
+        
+        Lighting.FogColor = Color3.fromRGB(255, 255, 255)
+        Lighting.FogEnd = math.huge
+        Lighting.FogStart = math.huge
+        Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+        Lighting.Brightness = 5
+        Lighting.ColorShift_Bottom = Color3.fromRGB(255, 255, 255)
+        Lighting.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+        Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
+        Lighting.Outlines = true
+    end
+end
+)
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Combat Pages \\--
+
+local ESPS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jackyfranker/DiscordLib/main/ESP"))()
+ESPS:Toggle(true)
+ESPS.Boxes = false
+ESPS.Tracers = false
+ESPS.Names = false
+
+combat:Button("Animation-Changer [Drops FPS / Recommend by Jack]", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/LunarWareOP/Animation-Changer-Source/main/Script", true))()
+end
+)
+
+combat:Button("Animation Packs", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/RobloxScripts/main/DaHood/AnimationPack.lua"))()
+end
+)
+
+combat:Toggle("Box ESP", false, function(t)
+		if t == true then
+			NL.Notify({
+				Title = "Box ESP",
+				Description = "True",
+				Duration = 1
+			})
+			ESPS.Boxes = true
+		elseif t == false then
+			NL.Notify({
+				Title = "Box ESP",
+				Description = "False",
+				Duration = 1
+			})
+			ESPS.Boxes = false
+		end
+	end
+)
+
+combat:Toggle("Name ESP", false, function(t)
+		if t == true then
+			NL.Notify({
+				Title = "Name ESP",
+				Description = "True",
+				Duration = 1
+			})
+			ESPS.Names = true
+		elseif t == false then
+			NL.Notify({
+				Title = "Name ESP",
+				Description = "False",
+				Duration = 1
+			})
+			ESPS.Names = false
+		end
+	end
+)
+
+combat:Toggle("Tracer ESP", false, function(t)
+		if t == true then
+			NL.Notify({
+				Title = "Tracer ESP",
+				Description = "True",
+				Duration = 1
+			})
+			ESPS.Tracers = true
+		elseif t == false then
+			NL.Notify({
+				Title = "Tracer ESP",
+				Description = "False",
+				Duration = 1
+			})
+			ESPS.Tracers = false
+		end
+	end
+)
+
+combat:Toggle("Auto-Reload", false, function(r)
+        if r == true then
+			NL.Notify({
+				Title = "Auto-Reload",
+				Description = "True",
+				Duration = 1
+			})
+			game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
+				if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+					if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
+						if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
+							game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload", game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")) 
+							wait(1)
+						end
+					end
+				end
+			end)
+	    elseif r == false then
+			NL.Notify({
+				Title = "Auto-Reload",
+				Description = "False",
+				Duration = 1
+			})
+            game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
+        end
+    end
+)
+
+combat:Button("Animation Packs", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/BibR7suA"))()
+end
+)
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Teleport Pages \\--
+
+teleport:Button("[Bank #Inside]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-481.471344, 23.0955524, -283.71936, -0.998737395, 1.3537707e-08, 0.0502357483, 1.0023502e-08, 1, -7.02062053e-08, -0.0502357483, -6.96140248e-08, -0.998737395)
+end)
+
+teleport:Button("[Bank #Roof]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-461.022675, 39.0414619, -283.707703, -0.023345245, -1.00733708e-07, -0.999727488, 2.07986917e-09, 1, -1.00809736e-07, 0.999727488, -4.43273018e-09, -0.023345245)
+end)
+
+teleport:Button("[Gunshop #1]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-580.786316, 8.31280422, -737.403931, 0.99997884, -2.20790719e-09, 0.00650190376, 2.2303821e-09, 1, -3.44942008e-09, -0.00650190376, 3.46384899e-09, 0.99997884)
+end)
+
+teleport:Button("[Gunshop #2]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(475.022003, 48.0030136, -603.737, 1, -6.25862873e-09, -2.83383207e-13, 6.25862873e-09, 1, 1.24807213e-08, 2.83305091e-13, -1.24807213e-08, 1)
+end)
+
+teleport:Button("[Foodshop #1]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-333.492065, 23.6806679, -292.959625, 1, -4.39840662e-08, -2.50952018e-15, 4.39840662e-08, 1, 8.76975577e-08, -1.34777479e-15, -8.76975577e-08, 1)
+end)
+
+teleport:Button("[Foodshop #2]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(301.570923, 49.2806778, -621.864075, 0.998264611, -6.56088961e-10, -0.0588875674, 6.40455022e-10, 1, -2.84361951e-10, 0.0588875674, 2.46153625e-10, 0.998264611)
+end)
+
+teleport:Button("[Taco]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(573.426514, 51.0594254, -478.298065, 0.00876330957, -2.38779467e-08, -0.999961615, -7.68338353e-08, 1, -2.45522092e-08, 0.999961615, 7.70460389e-08, 0.00876330957)
+end)
+
+teleport:Button("[Sewers]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(84.4671478, -38.002018, -295.797638, 0.0220847819, 1.141754e-07, -0.999756098, 1.23770549e-08, 1, 1.14476663e-07, 0.999756098, -1.49022288e-08, 0.0220847819)
+end)
+
+teleport:Button("[Admin Base]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-964, -47.6925774, -1014, 1, 3.74140718e-08, -2.14587395e-14, -3.74140718e-08, 1, -1.02326368e-07, 1.76302945e-14, 1.02326368e-07, 1)
+end)
+
+teleport:Button("[All Guns #1]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-798, -38.9375725, -886, 1, 2.22416521e-08, -8.39170872e-15, -2.22416521e-08, 1, -6.08317521e-08, 7.03870954e-15, 6.08317521e-08, 1)
+end)
+
+teleport:Button("[All Guns #2]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-872, -37.6875725, -546, 1, 3.65286752e-08, -1.8289254e-14, -3.65286752e-08, 1, -9.99067069e-08, 1.46397939e-14, 9.99067069e-08, 1)
+end)
+
+teleport:Button("[Park]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(360.966003, 49.211628, -522.987, 1, -3.16237134e-08, -8.26601411e-15, 3.16237134e-08, 1, 8.64908003e-08, 5.53085367e-15, -8.64908003e-08, 1)
+end)
+
+teleport:Button("[Playground]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-297.029114, 42.4132347, -760.332214, 0.991061628, 4.51803794e-09, -0.133404627, 5.6251741e-09, 1, 7.5656537e-08, 0.133404627, -7.57307177e-08, 0.991061628)
+end)
+
+teleport:Button("[StakePark]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-825.685974, 21.9978447, -549.29303, 1, 2.11031281e-08, 2.74902409e-14, -2.11031281e-08, 1, 3.53087621e-08, -2.67451144e-14, -3.53087621e-08, 1)
+end)
+
+teleport:Button("[Casino]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-861.977722, 21.7480202, -132.355377, -0.999999285, -6.8944539e-09, -0.00117591582, -6.89774327e-09, 1, 2.7933762e-09, 0.00117591582, 2.80148527e-09, -0.999999285)
+end)
+
+teleport:Button("[Theatre]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1004.41998, 21.2311783, -180.738998, 1, -8.01115263e-08, 2.51585895e-14, 8.01115263e-08, 1, -4.26443165e-08, -2.17422871e-14, 4.26443165e-08, 1)
+end)
+
+teleport:Button("[Furniture]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-491.367004, 21.9666309, -131.164993, 1, -2.08572644e-08, -1.98774086e-14, 2.08572644e-08, 1, 5.70430956e-08, 1.86876458e-14, -5.70430956e-08, 1)
+end)
+
+teleport:Button("[High School]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-586.106201, 21.8730183, 290.124817, 0.995514214, -5.68094105e-09, -0.0946118087, 8.07022182e-09, 1, 2.48708911e-08, 0.0946118087, -2.55228656e-08, 0.995514214)
+end)
+
+teleport:Button("[Trailor]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-950, -1.23643661, 470, 1, -6.8544721e-09, 2.70041253e-14, 6.8544721e-09, 1, 8.68197532e-08, -2.75992286e-14, -8.68197532e-08, 1)
+end)
+
+teleport:Button("[Church]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(205, 22.4616337, -82, 1, 3.02189243e-08, -1.45781434e-14, -3.02189243e-08, 1, -8.26464799e-08, 1.20806558e-14, 8.26464799e-08, 1)
+end)
+
+teleport:Button("[Military]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(27, 25.9666386, -867, 1, 2.1914552e-08, -7.29771993e-15, -2.1914552e-08, 1, -5.99355019e-08, 5.98426024e-15, 5.99355019e-08, 1)
+end)
+
+teleport:Button("[Food Cart]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-826, 22.0166378, -614, 1, 1.60456395e-08, -1.98615657e-14, -1.60456395e-08, 1, -4.38846648e-08, 1.91574085e-14, 4.38846648e-08, 1)
+end)
+
+teleport:Button("[Water Tower]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-669, 154.414276, -650, 1, 1.58034119e-08, -7.85143553e-15, -1.58034119e-08, 1, -4.32213803e-08, 7.1683907e-15, 4.32213803e-08, 1)
+end)
+
+teleport:Button("[Key]", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-271, 22.4616337, -247, 1, 2.00598205e-08, -8.54756956e-15, -2.00598205e-08, 1, -5.48629444e-08, 7.44702897e-15, 5.48629444e-08, 1)
+end)
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Fun Stuff Pages \\--
+
+fun:Button("FE Titan (Needs Max Muscle)", function()
+    function Main(a)local b=game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')local function c()for d,e in pairs(game.Players.LocalPlayer.Character:GetDescendants())do if e.Name=='OriginalSize'then e:Destroy()end;if e.Name=='OriginalPosition'then e:Destroy()end end end;local function f()wait(a)c()b:FindFirstChild("BodyWidthScale"):Destroy()end;local function g()wait(a)c()b:FindFirstChild("BodyDepthScale"):Destroy()end;local function h()wait(a)c()b:FindFirstChild("HeadScale"):Destroy()end;local function i()wait(a)c()b:FindFirstChild("BodyTypeScale"):Destroy()end;i()h()g()f()end;Main(.8)
+
+end
+)
+
+fun:Button("FE Ant (Needs Max Skinny)", function()
+    function Main(a)local b=game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')local function c()for d,e in pairs(game.Players.LocalPlayer.Character:GetDescendants())do if e.Name=='OriginalSize'then e:Destroy()end;if e.Name=='OriginalPosition'then e:Destroy()end end end;local function f()wait(a)c()b:FindFirstChild("BodyWidthScale"):Destroy()end;local function g()wait(a)c()b:FindFirstChild("BodyDepthScale"):Destroy()end;local function h()wait(a)c()b:FindFirstChild("HeadScale"):Destroy()end;local function i()wait(a)c()b:FindFirstChild("BodyTypeScale"):Destroy()end;i()h()g()f()end;Main(.8)
+
+end
+)
+
+fun:Button("PP Bat", function()
+    local d = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    local k = game.Workspace.Ignored.Shop["[Bat] - $250"]
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = k.Head.CFrame + Vector3.new(0, 3, 0)
+    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - k.Head.Position).Magnitude <= 50 then
+        wait(.2)
+        fireclickdetector(k:FindFirstChild("ClickDetector"), 4)
+        toolf = game.Players.LocalPlayer.Backpack:WaitForChild("[Bat]")
+        toolf.Parent = game.Players.LocalPlayer.Character
+        wait()
+        game.Players.LocalPlayer.Character:WaitForChild("[Bat]")
+        game.Players.LocalPlayer.Character:WaitForChild("[Bat]").Grip = CFrame.new(-2.4000001, -0.699999988, 0, 0, 1, -0, -1, 0, -0, 0, 0, 1)
+        game.Players.LocalPlayer.Character:WaitForChild("[Bat]").GripForward = Vector3.new(0, -1, -0)
+        game.Players.LocalPlayer.Character:WaitForChild("[Bat]").GripPos = Vector3.new(1.2111, 1.11114, 1.8111)
+        game.Players.LocalPlayer.Character:WaitForChild("[Bat]").GripUp = Vector3.new(-500000, 404, 5000000)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d)
+    end
+end
+)
+
+fun:Button("Flip", function()
+    local Player = game.Players.LocalPlayer
+    local niggers = Player.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll)
+    niggers:Play()
+end
+)
+
+fun:Button("Open Admin Base", function()
+    local Part = workspace['MAP']['EVIL_SPECIAL']
+    -- Open
+    for i=1,52 do
+        Part.CFrame = Part.CFrame + Vector3.new(0,.5,0)
+        wait()
+    end
+end
+)
+
+fun:Button("Close Admin Base", function()
+    local Part = workspace['MAP']['EVIL_SPECIAL']
+    -- // close
+    for i=1,52 do
+        Part.CFrame = Part.CFrame - Vector3.new(0,.5,0)
+        wait()
+    end
+end
+)
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Auto Farm Pages \\--
+
+autofarm:Button("Auto-Skinny", function()
+    local player = game.Players.LocalPlayer
+    local playerposit = CFrame.new(-84.2903137, 25.4502373, -632.315063, 0.0326573513, 6.83068393e-08, -0.999466658, 7.3860158e-09, 1, 6.85846331e-08, 0.999466658, -9.62186775e-09, 0.0326573513)
+    if not game.Players.LocalPlayer.Character:FindFirstChild("[Lettuce]") then
+        player.Character.HumanoidRootPart.CFrame = playerposit
+        local ClickClick = game:GetService("Workspace").Ignored.Shop["[Lettuce] - $5"]:FindFirstChild("ClickDetector")
+        for i = 1, 200 do
+            wait(0.9)
+            fireclickdetector(ClickClick)
+            wait(0.4)
+            game.Players.LocalPlayer.Backpack:FindFirstChild("[Lettuce]").Parent = player.Character
+            wait(0.5)
+            game:GetService("Players").LocalPlayer.Character["[Lettuce]"]:Activate()
+        end
+    end
+end
+)
+autofarm:Button("Auto-Muscle", function()
+    while true do
+        wait()
+        if not game.Players.LocalPlayer.Character:FindFirstChild("[HeavyWeights]") then
+            wait()
+            local k = game.Workspace.Ignored.Shop["[HeavyWeights] - $250"]
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = k.Head.CFrame + Vector3.new(0, 3, 0)
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - k.Head.Position).Magnitude <= 50 then
+                wait(.2)
+                fireclickdetector(k:FindFirstChild("ClickDetector"), 4)
+            end
+        end
+        if not game.Players.LocalPlayer.Character:FindFirstChild("[HeavyWeights]") then
+            tool = game.Players.LocalPlayer.Backpack:WaitForChild("[HeavyWeights]")
+            tool.Parent = game.Players.LocalPlayer.Character
+        end
+        game:GetService("VirtualUser"):ClickButton1(Vector2.new())
+        local d = Vector3.new(-1006.99, -51.1542, -1014.33)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d)
+    end
+end
+)
+
+autofarm:Button(" ATM Autofarm", function()
+    _G.rob = true
+
+    noclip = true
+    game:GetService("RunService").Stepped:connect(function()
+        if noclip then
+            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+        end
+    end)
+    plr = game.Players.LocalPlayer
+    mouse = plr:GetMouse()
+    mouse.KeyDown:connect(function(key)
+
+        if key == "b" then
+            noclip = not noclip
+            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+        end
+    end)
+
+    local a = game.Workspace.Cashiers:GetChildren()
+    for b = 1, #a do
+        local c = a[b]
+        c.Name = "CASHIER" .. b
+    end
+    for d, e in pairs(game.Workspace:GetDescendants()) do
+        if e:IsA("Seat") then
+            e:Destroy()
+        end
+    end
+    for f, g in pairs(game.Workspace.MAP.Map["Da Furniture"]:GetChildren()) do
+        if g then
+            if g.Name == "Part" then
+                g.CanCollide = false
+            end
+        end
+    end
+    for h, i in pairs(game.Workspace.MAP.Map["Ubi's Resturant"]:GetChildren()) do
+        if i then
+            if i.Name == "Part" then
+                if i.Size ~= Vector3.new(48, 3.25, 80) then
+                    i.CanCollide = false
+                end
+            end
+        end
+    end
+    for j, k in pairs(game.Workspace.MAP.Map["Gas Station"]["Gas Station"]:GetChildren()) do
+        if k then
+            if k.Name == "Part" then
+                if k.Size ~= Vector3.new(68, 1, 56) then
+                    k.CanCollide = false
+                end
+            end
+        end
+    end
+    function toTarget(l, m, n)
+        local o = game:service "TweenService"
+        local p = TweenInfo.new((m - l).Magnitude / 170, Enum.EasingStyle.Quad)
+        local q = tick()
+        local r, s =
+            pcall(
+                function()
+                local r = o:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], p, {CFrame = n})
+                r:Play()
+            end
+            )
+        if not r then
+            return s
+        end
+        for i, v in pairs(workspace.Cashiers:GetChildren()) do
+            if v:WaitForChild("Humanoid").Health > 0 then
+                local cf = v.Open.CFrame
+                local lv = cf.lookVector
+                game.workspace.Players[game.Players.LocalPlayer.Name].HumanoidRootPart.CFrame = cf + (lv * Vector3.new(-1, 0, 0))
+                return v
+            end
+        end
+    end
+    local function t(u, v)
+        local w = (u.Position - v.Position).magnitude
+        if w <= 50 then
+            fireclickdetector(v:FindFirstChild("ClickDetector"))
+            return w
+        end
+    end
+    while _G.rob == true do
+        wait()
+        repeat
+            for x, y in pairs(game.Workspace.Ignored.Drop:GetChildren()) do
+                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - y.Position).Magnitude <= 50 then
+                    local z = y
+                    t(game.Players.LocalPlayer.Character.HumanoidRootPart, y)
+                    wait()
+                end
+            end
+            if not game.Players.LocalPlayer.Character:FindFirstChild("Combat") then
+                local A = game.Players.LocalPlayer.Backpack:FindFirstChild("Combat")
+                A.Parent = game.Players.LocalPlayer.Character
+            end
+            wait()
+            for b, B in pairs(game.Workspace.Cashiers:GetChildren()) do
+                wait()
+                if B:FindFirstChild("Humanoid") then
+                    if B.Humanoid.Health > 0 then
+                        wait()
+                        if B.Name ~= "CASHIER5" then
+                            B.Open.Orientation = Vector3.new(0, 90, 0)
+                            B.Open.Size = Vector3.new(4,4,4)
+                            B.Open.CanCollide = false
+                        end
+                        if B.Name == "CASHIER5" then
+                            --B.Open.Orientation = Vector3.new(0, 180, 0)
+                            B.Open.Position = B.Open.Position - Vector3.new(0,0,0)
+                            B.Open.Size = Vector3.new(4,4,4)
+                            B.Open.CanCollide = false
+                        end
+                        wait()
+                        poss = B.Open.Position - Vector3.new(0, 0, 0)
+                        posc = B.Open.CFrame - Vector3.new(-1, 0, 0)
+                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position, poss, posc)
+                        repeat
+                            wait()
+                        until (game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position - poss).Magnitude <
+                            50 or
+                            _G.rob == false or
+                            B.Humanoid.Health <= 0
+                        repeat
+                            if not game.Players.LocalPlayer.Character:FindFirstChild("Combat") then
+                                local A = game.Players.LocalPlayer.Backpack:FindFirstChild("Combat")
+                                A.Parent = game.Players.LocalPlayer.Character
+                            end
+                            toTarget(
+                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,
+                                poss,
+                                posc
+                            )
+                            wait(0)
+                            game:GetService("VirtualUser"):Button1Down(Vector2.new())
+                        until B.Humanoid.Health <= 0 or _G.rob == false
+                        wait(0)
+                        for C = 5, 50 do
+                            wait()
+                            for x, y in pairs(game.Workspace.Ignored.Drop:GetChildren()) do
+                                if
+                                    (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - y.Position).Magnitude <=
+                                        50
+                                then
+                                    if y:IsA("Part") then
+                                        local z = y
+                                        t(game.Players.LocalPlayer.Character.HumanoidRootPart, y)
+                                        wait()
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        until _G.rob == false
+    end
+end
+)
+
+autofarm:Button("Auto-Box", function()
+    while true do
+        wait()
+        if not game.Players.LocalPlayer.Character:FindFirstChild("Combat") then
+            local tool = game.Players.LocalPlayer.Backpack:FindFirstChild("Combat")
+            tool.Parent = game.Players.LocalPlayer.Character
+        end
+        for V, W in pairs(game.Workspace.MAP.Map.ArenaBOX:GetChildren()) do
+            wait()
+            warn(W)
+            if W.Name == "PunchingBagInGame" then
+                wait()
+                posMx = W:FindFirstChild("pretty ransom").Position - Vector3.new(0, 0, 0)
+                poscMx = W:FindFirstChild("pretty ransom").CFrame - Vector3.new(3, 0, 0)
+                ToShoes(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position, posMx, poscMx)
+                while true do
+                    if not game.Players.LocalPlayer.Character:FindFirstChild("Combat") then
+                        local tool = game.Players.LocalPlayer.Backpack:FindFirstChild("Combat")
+                        tool.Parent = game.Players.LocalPlayer.Character
+                    end
+                    ToShoes(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position, posMx, poscMx)
+                    wait(.5)
+                    game:GetService("VirtualUser"):ClickButton1(Vector2.new())
+                end
+            end
+        end
+    end
+end
+)
+
+autofarm:Label("Reset to stop Autofarming")
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Auto Buy Pages \\--
+
+for i,v in pairs(game.Workspace.Ignored.Shop:GetChildren()) do
+	autobuy:Button(
+		"Buy "..v.Name,
+		function()
+			local player = game:GetService("Players");
+			local localplayer = player.LocalPlayer;
+			local localCharacter = localplayer.Character;
+			
+			local OldPos = localCharacter.HumanoidRootPart.Position;
+			localCharacter.HumanoidRootPart.CFrame = game.Workspace.Ignored.Shop[v.Name].Head.CFrame + Vector3.new(0,2,0);
+			local itemclick = game.Workspace.Ignored.Shop[v.Name];
+			wait(.30);
+			fireclickdetector(game:GetService("Workspace").Ignored.Shop[v.Name].ClickDetector);    
+			wait(.40);
+			localCharacter.HumanoidRootPart.CFrame = CFrame.new(OldPos);
+			end
+	)
+end
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Money Stuff Pages \\--
+
+money:Toggle("Cash-Aura", false, function()
+DiscordLib:Notification("Oops!", "There's no scripts in this button", "Okay!")
+end)
+
+money:Button("Cash ESP", function()
+        local ESPholder = Instance.new("Folder", game.CoreGui)
+		function cham(object)
+			if object.Name == "MoneyDrop" then
+				local a = Instance.new("BoxHandleAdornment", ESPholder)
+				a.Adornee = object
+				a.AlwaysOnTop = true
+				a.ZIndex = 10
+				a.Size = object.Size
+				a.Transparency = 0.3
+				a.Color = object.BrickColor
+				local bill = object:WaitForChild("BillboardGui")
+				bill.AlwaysOnTop = true
+				bill.Size = UDim2.new(2, 10, 1, 5)
+				spawn(function()
+					while true do
+						if object.Parent.ChildRemoving:wait() == object then
+							a:Destroy()
+							break
+						end
+					end
+				end)
+			end
+		end
+		for i, v in next, game.Workspace.Ignored.Drop:GetChildren() do
+			cham(v)
+		end
+		game.Workspace.Ignored.Drop.ChildAdded:connect(cham)
+	end
+)
+
+money:Toggle("Auto-Drop", false, function(auto)
+        if auto then
+			NL.Notify({
+				Title = "Auto-Drop",
+				Description = "True",
+				Duration = 1
+			})
+            BooleanValues['Dropping'] = true
+        else
+			NL.Notify({
+				Title = "Auto-Drop",
+				Description = "False",
+				Duration = 1
+			})
+            BooleanValues['Dropping'] = false
+        end
+    end
+)
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
+
+--// Credits Pages \\--
+credit:Seperator()
+credit:Label("-------- Founder / Developer = Jackyfranker (Roblox User)")
+credit:Label("------ Developer = blue_color333 (Roblox User)")
+credit:Label("---- Scripter = 1cxvv (Roblox User)")
+credit:Label("-- Tester / Helper = StopactinglikeKid (Roblox User)")
+credit:Seperator()
+credit:Button("Click to copy discord!", function()
+setclipboard("https://discord.gg/kw4T23Mq")
+end)
+credit:Button("Click to Support!", function()
+DiscordLib:Notification("Yay!", "Thanks for Support", "Okay!")
+end)
+credit:Label("https://discord.gg/kw4T23Mq")
+credit:Seperator()
+
+--{ Thanks for using }--
+
+-- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
