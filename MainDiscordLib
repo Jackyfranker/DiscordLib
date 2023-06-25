@@ -576,11 +576,6 @@ combat:Toggle("Auto-Reload", false, function(r)
     end
 )
 
-combat:Button("Animation Packs", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/BibR7suA"))()
-end
-)
-
 -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** -- ** --
 
 --// Teleport Pages \\--
